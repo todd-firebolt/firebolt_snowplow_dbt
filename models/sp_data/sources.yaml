@@ -1,0 +1,19 @@
+version: 2
+
+    
+sources:
+  - name: snowplow_load
+    schema: "{{ target.schema }}"
+    loader: S3
+    quoting:
+      identifier: false
+
+    tables:
+      - name: snowplow_events_ext
+        external:
+          url: 's3://firebolt-publishing-poc-snowplow/events/transformed/'
+          object_pattern: '*.json'
+          type: '(JSON PARSE_AS_TEXT = ''TRUE'')'
+        columns:
+            - name: raw_json
+              data_type: TEXT
