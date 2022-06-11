@@ -18,6 +18,11 @@
        'key_columns': ['event', 'app_id', 'platform', 'collector_date', 'geo_country'],
        'aggregation': ['count(*)','count(distinct event_id)', 'count(distinct page_view_id)',
          'count(distinct user_id)', 'count(distinct txn_id)']
+     },
+     {
+       'index_type': 'aggregating',
+       'key_columns': ['event', 'domain_sessionid', 'collector_date'],
+       'aggregation': ['count(*)','count(distinct event_id)', 'count(distinct page_view_id)']
      }
    ]
    )
